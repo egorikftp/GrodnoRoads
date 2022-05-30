@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -24,10 +23,7 @@ import com.egoriku.grodnoroads.foundation.SpeedLimitSign
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CameraAlert(
-    distance: Int,
-    speedLimit: Int,
-    painter: Painter,
-    title: String
+    distance: Int, speedLimit: Int, drawableId: Int, title: String
 ) {
     Card(modifier = Modifier.fillMaxWidth(), elevation = 5.dp) {
         Column(modifier = Modifier.padding(8.dp)) {
@@ -37,7 +33,7 @@ fun CameraAlert(
             ) {
                 Image(
                     modifier = Modifier.size(46.dp),
-                    painter = painter,
+                    painter = painterResource(id = drawableId),
                     contentDescription = null
                 )
                 Column(
@@ -54,9 +50,7 @@ fun CameraAlert(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         text = pluralStringResource(
-                            R.plurals.camera_alerts_plurals_distance,
-                            distance,
-                            distance
+                            R.plurals.camera_alerts_plurals_distance, distance, distance
                         ),
                         style = MaterialTheme.typography.body2
                     )
@@ -78,25 +72,25 @@ private fun PreviewStationaryAlert() {
         CameraAlert(
             distance = 200,
             speedLimit = 60,
-            painter = painterResource(id = R.drawable.ic_stationary_camera),
+            drawableId = R.drawable.ic_stationary_camera,
             title = stringResource(R.string.alerts_stationary_camera)
         )
         CameraAlert(
             distance = 200,
             speedLimit = -1,
-            painter = painterResource(id = R.drawable.ic_stationary_camera),
+            drawableId = R.drawable.ic_stationary_camera,
             title = stringResource(R.string.alerts_stationary_camera)
         )
         CameraAlert(
             distance = 200,
             speedLimit = 60,
-            painter = painterResource(id = R.drawable.ic_mobile_camera),
+            drawableId = R.drawable.ic_mobile_camera,
             title = stringResource(R.string.alerts_mobile_camera)
         )
         CameraAlert(
             distance = 200,
             speedLimit = -1,
-            painter = painterResource(id = R.drawable.ic_mobile_camera),
+            drawableId = R.drawable.ic_mobile_camera,
             title = stringResource(R.string.alerts_mobile_camera)
         )
     }

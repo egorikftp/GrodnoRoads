@@ -8,19 +8,18 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.egoriku.grodnoroads.R
-import com.egoriku.grodnoroads.screen.map.domain.MapEventType.*
-import com.egoriku.grodnoroads.screen.map.domain.Source
 import com.egoriku.grodnoroads.foundation.alerts.CameraAlert
 import com.egoriku.grodnoroads.foundation.alerts.IncidentAlert
 import com.egoriku.grodnoroads.screen.map.domain.Alert
 import com.egoriku.grodnoroads.screen.map.domain.Alert.CameraAlert
 import com.egoriku.grodnoroads.screen.map.domain.Alert.IncidentAlert
+import com.egoriku.grodnoroads.screen.map.domain.MapEventType.*
 import com.egoriku.grodnoroads.screen.map.domain.MessageItem
+import com.egoriku.grodnoroads.screen.map.domain.Source
 
 @Composable
 fun Alerts(
@@ -56,14 +55,14 @@ fun Alerts(
                         else -> throw IllegalArgumentException("title not applicable")
                     }
                     val icon = when (alert.mapEventType) {
-                        StationaryCamera -> painterResource(id = R.drawable.ic_stationary_camera)
-                        MobileCamera -> painterResource(id = R.drawable.ic_mobile_camera)
+                        StationaryCamera -> R.drawable.ic_stationary_camera
+                        MobileCamera -> R.drawable.ic_mobile_camera
                         else -> throw IllegalArgumentException("title not applicable")
                     }
                     CameraAlert(
                         distance = alert.distance,
                         speedLimit = alert.speedLimit,
-                        painter = icon,
+                        drawableId = icon,
                         title = title
                     )
                 }
